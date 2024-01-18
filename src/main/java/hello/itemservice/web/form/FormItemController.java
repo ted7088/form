@@ -35,6 +35,7 @@ public class FormItemController {
     public String items(Model model) {
         List<Item> items = itemRepository.findAll();
         model.addAttribute("items", items);
+
         return "form/items";
     }
 
@@ -62,6 +63,7 @@ public class FormItemController {
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true);
+
         return "redirect:/form/items/{itemId}";
     }
 
@@ -77,6 +79,7 @@ public class FormItemController {
     public String edit(@PathVariable Long itemId, @ModelAttribute Item item) {
 
         itemRepository.update(itemId, item);
+
         return "redirect:/form/items/{itemId}";
     }
 
