@@ -24,9 +24,9 @@ public class FormItemController {
     @ModelAttribute("regions")
     public Map<String, String> regions(){
         Map<String, String> regions = new LinkedHashMap<>();
-        regions.put("Seoul", "서울");
-        regions.put("Busan", "부산");
-        regions.put("Jeju", "제주");
+        regions.put("SEOUL", "서울");
+        regions.put("BUSAN", "부산");
+        regions.put("JEJU", "제주");
 
         return regions;
     }
@@ -57,6 +57,8 @@ public class FormItemController {
     @PostMapping("/add")
     public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
         log.info("item.open={}", item.getOpen());
+        log.info("item.regions={}" , item.getRegions());
+
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true);
